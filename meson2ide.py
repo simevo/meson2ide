@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import argparse
 import json
 import os
@@ -46,7 +46,7 @@ def gcc_get_included_files(cmd, dir):
     opts.append('-H')
 
     try:
-        res = subprocess.check_output(opts, stderr=subprocess.STDOUT, cwd=dir)
+        res = subprocess.check_output(opts, stderr=subprocess.STDOUT, cwd=dir).decode('utf-8')
         files = []
         lines = res.split('\n')
         re_prg = re.compile('^\.+ ')
@@ -111,7 +111,7 @@ def collect_meson_files(src_dir):
 def mesonintrospect(commands, build_dir):
     args = ['mesonintrospect.py']
     args.extend(commands)
-    return subprocess.check_output(args, stderr=subprocess.STDOUT, cwd=build_dir)
+    return subprocess.check_output(args, stderr=subprocess.STDOUT, cwd=build_dir).decode('utf-8')
 
 
 def get_project_name(build_dir):
