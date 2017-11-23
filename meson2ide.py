@@ -109,8 +109,9 @@ def collect_meson_files(src_dir):
 
 
 def mesonintrospect(commands, build_dir):
-    args = ['mesonintrospect.py']
+    args = ['/usr/bin/mesonintrospect']
     args.extend(commands)
+    args.extend([build_dir])
     return subprocess.check_output(args, stderr=subprocess.STDOUT, cwd=build_dir).decode('utf-8')
 
 
