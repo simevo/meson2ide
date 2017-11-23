@@ -58,8 +58,8 @@ def gcc_get_included_files(cmd, dir):
                     file_name = os.path.abspath(os.path.join(dir, file_name))
                     files.append(file_name)
         return list(set(files))
-    except:
-        print 'FAIL'
+    except subprocess.CalledProcessError as e:
+        print("FAIL :%s\n" % e.output.decode('utf-8'))
         return []
 
 
